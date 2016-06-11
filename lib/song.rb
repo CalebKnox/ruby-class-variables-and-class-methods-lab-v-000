@@ -1,14 +1,15 @@
 class Song
+  attr_accessor :name, :artist, :genre
+
   @@count = 0
   @@genres = []
   @@artists = []
-  attr_accessor :name, :artist, :genre
 
   def initialize(name, artist, genre)
-    @@count += 1
     @name = name
     @artist = artist
     @genre = genre
+    @@count += 1
     @@genres << genre
     @@artists << artist
   end
@@ -18,39 +19,35 @@ class Song
   end
 
   def self.genres
-    genres = @@genres.uniq
-    genres
+    @@genres.uniq
   end
 
   def self.artists
-    artists = @@artists.uniq
-    artists
+    @@artists.uniq
   end
-  #create key with genre
-  #create value with a count
-  #increment count for ever repeat
+
   def self.genre_count
-    genre_hash = {}
+    genre_count_hash = {}
     @@genres.each do |genre|
-      if genre_hash.has_key?(genre)
-        genre_hash[genre] += 1
+      if genre_count_hash.include?(genre)
+        genre_count_hash[genre] += 1
       else
-        genre_hash[genre] = 1
+        genre_count_hash[genre] = 1
       end
     end
-    return genre_hash
+    genre_count_hash
   end
 
   def self.artist_count
-    artist_hash = {}
+    artist_count_hash = {}
     @@artists.each do |artist|
-      if artist_hash.has_key?(artist)
-        artist_hash[artist] += 1
+      if artist_count_hash.include?(artist)
+        artist_count_hash[artist] += 1
       else
-        artist_hash[artist] = 1
+        artist_count_hash[artist] = 1
       end
     end
-    return artist_hash
+    artist_count_hash
   end
 
 end
